@@ -1,12 +1,17 @@
+package com.company;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.net.*;
 
 public class apiiDictTranslator
 {
-	String wbPageCtx;
+	private String wbPageCtx;
+	private String meaning;
 	public apiiDictTranslator(String wd)
 	{
 		
@@ -36,8 +41,27 @@ public class apiiDictTranslator
             System.exit(0);
         }
 	}
-	public void showRawWebpage()
-	{
-		System.out.println(wbPageCtx);
-	}
+    public String translatorInfo()
+    {
+        return "\n\t===== Translated by [apii.dict.cn/mini.php]";
+    }
+
+
+	public void regexParser()
+    {
+        String meaningPattern="<div id=\"e\">(.*?)</div>";
+
+        Pattern meanRegex=Pattern.compile(meaningPattern);
+        Matcher meanGp = meanRegex.matcher(wbPageCtx);
+        meaning="";
+        if(meanGp.find()) {
+            String ctxLines[] = meanGp.group(1).split("<br>");
+            for(String it : ctxLines)
+                meaning=meaning+it+"\n";
+        }
+    }
+    public String translate()
+    {
+        return meaning;
+    }
 }

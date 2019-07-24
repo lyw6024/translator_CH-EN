@@ -1,3 +1,5 @@
+package com.company;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,7 +37,11 @@ public class youdaoXMLtranslator
             System.exit(0);
         }
 	}
-		public void showRawWebpage()
+    public String translatorInfo()
+    {
+        return "\n\t===== Translated by [fanyi.youdao.com]";
+    }
+    public void showRawWebpage()
 	{
 		System.out.println(wbPageCtx);
 	}

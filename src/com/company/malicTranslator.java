@@ -1,5 +1,5 @@
- 
 
+package com.company;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,6 +37,11 @@ public class malicTranslator {
         }
 
     }
+    public String translatorInfo()
+    {
+        return "\n\t===== Translated by [lab.malic.xyz/dict]";
+    }
+
     public String translate()
     {
         return meaning;
