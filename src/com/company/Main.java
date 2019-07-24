@@ -25,7 +25,8 @@ public class Main {
 
 			youdaoXMLtranslator s3= new youdaoXMLtranslator(toLookUpWord);
             System.out.println(s3.translatorInfo());
-			s3.showRawWebpage();
+			s3.xmlParser();
+            System.out.println(s3.translate());
 
         } catch (Exception e) {
             e.printStackTrace();
