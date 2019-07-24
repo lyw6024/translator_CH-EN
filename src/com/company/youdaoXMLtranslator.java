@@ -1,15 +1,19 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import javax.xml.parsers.*;
+
+import java.io.*;
 import java.net.*;
 
 public class youdaoXMLtranslator
 {
 	String wbPageCtx;
-	public youdaoXMLtranslator(String wd)
+	String meaning;
+    public youdaoXMLtranslator(String wd)
 {
 		String strUrl="http://fanyi.youdao.com/translate?&i="+wd+"&doctype=xml";
 		try {
@@ -45,4 +49,39 @@ public class youdaoXMLtranslator
 	{
 		System.out.println(wbPageCtx);
 	}
+	public void xmlParser()
+    {
+
+        try
+        {
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(new InputSource(new StringReader(wbPageCtx)));
+
+            //Node inpCtx= doc.getElementsByTagName("input").item(0);
+            Node transCtx = doc.getElementsByTagName("translation").item(0);
+            meaning=transCtx.getTextContent().trim();
+        }
+        catch (ParserConfigurationException e)
+        {
+            System.out.println("Doc builder Error");
+            System.exit(0);
+        }
+        catch (SAXException e)
+        {
+            System.out.println("XML format error");
+            System.exit(0);
+        }
+        catch (IOException e)
+        {
+            System.out.println("IOE");
+            System.exit(0);
+        }
+    }
+    public String translate()
+    {
+        return meaning;
+    }
+
+>>>>>>> ed053f33e9021e145b22ab3405ea1e2a5f6c3867
 }
