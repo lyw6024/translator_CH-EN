@@ -83,5 +83,4 @@ public class youdaoXMLtranslator
         return meaning;
     }
 
->>>>>>> ed053f33e9021e145b22ab3405ea1e2a5f6c3867
 }
