@@ -6,6 +6,8 @@ Java learning:
 - web scratch
 - GUI
 # Todo
+## add keyboard event
+ press Enter to look up words
 ## add hujiang dict
  url is  "https://dict.hjenglish.com/w/" + tolookupword
  
