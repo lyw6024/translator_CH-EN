@@ -11,6 +11,14 @@ public class malicTranslator {
 
     public malicTranslator(String wd)
     {
+        getWbCtx(wd);
+    }
+    public String translatorInfo()
+    {
+        return "\n\t===== Translated by [lab.malic.xyz/dict]";
+    }
+    private void getWbCtx(String wd)
+    {
         String strUrl="http://lab.malic.xyz/dict/query.php?q="+wd;
         try {
             URL url = new URL(strUrl);
@@ -37,11 +45,6 @@ public class malicTranslator {
         }
 
     }
-    public String translatorInfo()
-    {
-        return "\n\t===== Translated by [lab.malic.xyz/dict]";
-    }
-
     public String translate()
     {
         return meaning;

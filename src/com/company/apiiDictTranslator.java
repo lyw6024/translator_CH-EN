@@ -14,9 +14,18 @@ public class apiiDictTranslator
 	private String meaning;
 	public apiiDictTranslator(String wd)
 	{
-		
-		String strUrl="http://apii.dict.cn/mini.php?q="+wd;
-		try {
+		getWbCtx(wd);
+        regexParser();
+	}
+    public String translatorInfo()
+    {
+        return "\n\t===== Translated by [apii.dict.cn/mini.php]";
+    }
+
+    private void getWbCtx(String wd)
+    {
+        String strUrl="http://apii.dict.cn/mini.php?q="+wd;
+        try {
             URL url = new URL(strUrl);
             InputStream in = url.openStream();
             InputStreamReader inpstreamreader = new InputStreamReader(in);
@@ -40,14 +49,9 @@ public class apiiDictTranslator
             System.out.println("input error");
             System.exit(0);
         }
-	}
-    public String translatorInfo()
-    {
-        return "\n\t===== Translated by [apii.dict.cn/mini.php]";
     }
 
-
-	public void regexParser()
+	private void regexParser()
     {
         String meaningPattern="<div id=\"e\">(.*?)</div>";
 

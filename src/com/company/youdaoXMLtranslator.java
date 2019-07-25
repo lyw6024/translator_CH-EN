@@ -14,9 +14,22 @@ public class youdaoXMLtranslator
 	String wbPageCtx;
 	String meaning;
     public youdaoXMLtranslator(String wd)
-{
-		String strUrl="http://fanyi.youdao.com/translate?&i="+wd+"&doctype=xml";
-		try {
+    {
+		getWbCtx(wd);
+		xmlParser();
+	}
+    public String translatorInfo()
+    {
+        return "\n\t===== Translated by [fanyi.youdao.com]";
+    }
+    private void showRawWebpage()
+	{
+		System.out.println(wbPageCtx);
+	}
+    private void getWbCtx(String wd)
+    {
+        String strUrl="http://fanyi.youdao.com/translate?&i="+wd+"&doctype=xml";
+        try {
             URL url = new URL(strUrl);
             InputStream in = url.openStream();
             InputStreamReader inpstreamreader = new InputStreamReader(in);
@@ -40,16 +53,8 @@ public class youdaoXMLtranslator
             System.out.println("input error");
             System.exit(0);
         }
-	}
-    public String translatorInfo()
-    {
-        return "\n\t===== Translated by [fanyi.youdao.com]";
     }
-    public void showRawWebpage()
-	{
-		System.out.println(wbPageCtx);
-	}
-	public void xmlParser()
+	private void xmlParser()
     {
 
         try
