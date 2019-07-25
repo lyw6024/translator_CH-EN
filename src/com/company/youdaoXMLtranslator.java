@@ -20,7 +20,7 @@ public class youdaoXMLtranslator
 	}
     public String translatorInfo()
     {
-        return "\n\t===== Translated by [fanyi.youdao.com]";
+        return "\t===== Translated by [fanyi.youdao.com]";
     }
     private void showRawWebpage()
 	{
@@ -85,7 +85,7 @@ public class youdaoXMLtranslator
     }
     public String translate()
     {
-        return meaning;
+        return meaning+"\n";
     }
 
 }

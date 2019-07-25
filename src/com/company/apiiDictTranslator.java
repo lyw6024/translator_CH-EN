@@ -19,7 +19,7 @@ public class apiiDictTranslator
 	}
     public String translatorInfo()
     {
-        return "\n\t===== Translated by [apii.dict.cn/mini.php]";
+        return "\t===== Translated by [apii.dict.cn/mini.php]";
     }
 
     private void getWbCtx(String wd)

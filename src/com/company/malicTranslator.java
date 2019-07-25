@@ -15,7 +15,7 @@ public class malicTranslator {
     }
     public String translatorInfo()
     {
-        return "\n\t===== Translated by [lab.malic.xyz/dict]";
+        return "\t===== Translated by [lab.malic.xyz/dict]";
     }
     private void getWbCtx(String wd)
     {
@@ -47,7 +47,7 @@ public class malicTranslator {
     }
     public String translate()
     {
-        return meaning;
+        return meaning+"\n";
     }
 
 }

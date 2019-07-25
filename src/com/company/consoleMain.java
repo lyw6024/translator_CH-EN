@@ -3,7 +3,7 @@ package com.company;
 import java.io.*;
 
 
-public class Main {
+public class consoleMain {
 
     public static void main(String args[])  {
         try {

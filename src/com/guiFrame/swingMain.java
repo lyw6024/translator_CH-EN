@@ -3,7 +3,7 @@ package com.guiFrame;
 import com.company.apiiDictTranslator;
 import com.company.malicTranslator;
 import com.company.youdaoXMLtranslator;
-import com.sun.java.accessibility.util.SwingEventMonitor;
+
 
 import javax.swing.*;
 import java.awt.event.*;
