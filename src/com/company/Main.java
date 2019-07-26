@@ -11,22 +11,18 @@ public class Main {
 			System.out.println("Init OK,\ninput a word:");
             String toLookUpWord=bf.readLine();
 
-
             malicTranslator s=new malicTranslator(toLookUpWord);
-            System.out.println(s.translatorInfo());
             System.out.println(s.translate());
-
+            System.out.println(s.transInfo());
 
 			apiiDictTranslator s2=new apiiDictTranslator(toLookUpWord);
-            System.out.println(s2.translatorInfo());
-			s2.regexParser();
             System.out.println(s2.translate());
-
+            System.out.println(s2.transInfo());
 
 			youdaoXMLtranslator s3= new youdaoXMLtranslator(toLookUpWord);
-            System.out.println(s3.translatorInfo());
-			s3.xmlParser();
             System.out.println(s3.translate());
+            System.out.println(s3.transInfo());
+
 
         } catch (Exception e) {
             e.printStackTrace();

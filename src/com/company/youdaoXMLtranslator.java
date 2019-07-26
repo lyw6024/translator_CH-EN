@@ -7,56 +7,24 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.*;
 
 import java.io.*;
-import java.net.*;
 
-public class youdaoXMLtranslator
+
+public class youdaoXMLtranslator extends translator
 {
-	String wbPageCtx;
-	String meaning;
+
     public youdaoXMLtranslator(String wd)
-{
-		String strUrl="http://fanyi.youdao.com/translate?&i="+wd+"&doctype=xml";
-		try {
-            URL url = new URL(strUrl);
-            InputStream in = url.openStream();
-            InputStreamReader inpstreamreader = new InputStreamReader(in);
-            BufferedReader bufreader = new BufferedReader(inpstreamreader);
-            String currGetstr;
-            wbPageCtx="";
-            while ((currGetstr = bufreader.readLine()) != null) {
-                wbPageCtx+=currGetstr;
-            }
-            bufreader.close();
-            inpstreamreader.close();
-            in.close();
-        }
-        catch (MalformedURLException e)
-        {
-            System.out.println("connected error");
-            System.exit(0);
-        }
-        catch (IOException e)
-        {
-            System.out.println("input error");
-            System.exit(0);
-        }
-	}
-    public String translatorInfo()
     {
-        return "\n\t===== Translated by [fanyi.youdao.com]";
-    }
-    public void showRawWebpage()
-	{
-		System.out.println(wbPageCtx);
+        super("http://fanyi.youdao.com/translate?&i="+wd+"&doctype=xml");
+        apiResource="fanyi.youdao.com";
 	}
-	public void xmlParser()
-    {
 
+	void parser()
+    {
         try
         {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(new InputSource(new StringReader(wbPageCtx)));
+            Document doc = dBuilder.parse(new InputSource(new StringReader(wbpageCtx)));
 
             //Node inpCtx= doc.getElementsByTagName("input").item(0);
             Node transCtx = doc.getElementsByTagName("translation").item(0);
@@ -78,9 +46,4 @@ public class youdaoXMLtranslator
             System.exit(0);
         }
     }
-    public String translate()
-    {
-        return meaning;
-    }
-
 }

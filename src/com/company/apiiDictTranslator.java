@@ -8,60 +8,24 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.net.*;
 
-public class apiiDictTranslator
+public class apiiDictTranslator extends translator
 {
-	private String wbPageCtx;
-	private String meaning;
-	public apiiDictTranslator(String wd)
-	{
-		
-		String strUrl="http://apii.dict.cn/mini.php?q="+wd;
-		try {
-            URL url = new URL(strUrl);
-            InputStream in = url.openStream();
-            InputStreamReader inpstreamreader = new InputStreamReader(in);
-            BufferedReader bufreader = new BufferedReader(inpstreamreader);
-            String currGetstr;
-            wbPageCtx="";
-            while ((currGetstr = bufreader.readLine()) != null) {
-                wbPageCtx+=currGetstr;
-            }
-            bufreader.close();
-            inpstreamreader.close();
-            in.close();
-        }
-        catch (MalformedURLException e)
-        {
-            System.out.println("connected error");
-            System.exit(0);
-        }
-        catch (IOException e)
-        {
-            System.out.println("input error");
-            System.exit(0);
-        }
-	}
-    public String translatorInfo()
+    public apiiDictTranslator(String wd)
     {
-        return "\n\t===== Translated by [apii.dict.cn/mini.php]";
+        super("http://apii.dict.cn/mini.php?q="+wd);
+        apiResource="apii.dict.cn";
     }
-
-
-	public void regexParser()
+	void parser()
     {
         String meaningPattern="<div id=\"e\">(.*?)</div>";
 
         Pattern meanRegex=Pattern.compile(meaningPattern);
-        Matcher meanGp = meanRegex.matcher(wbPageCtx);
+        Matcher meanGp = meanRegex.matcher(wbpageCtx);
         meaning="";
         if(meanGp.find()) {
             String ctxLines[] = meanGp.group(1).split("<br>");
             for(String it : ctxLines)
                 meaning=meaning+it+"\n";
         }
-    }
-    public String translate()
-    {
-        return meaning;
     }
 }
