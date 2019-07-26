@@ -3,12 +3,12 @@ package com.company;
 import java.io.*;
 
 
-public class Main {
+public class consoleMain {
 
     public static void main(String args[])  {
         try {
             BufferedReader bf= new BufferedReader(new InputStreamReader(System.in));
-			System.out.println("Init OK,\ninput a word:");
+			System.out.println("Input a word:");
             String toLookUpWord=bf.readLine();
 
             malicTranslator s=new malicTranslator(toLookUpWord);
