@@ -82,17 +82,17 @@ class MyMouseList extends MouseAdapter
         {
             case 0:
                 malicTranslator s0=new malicTranslator(toLookUpWord);
-                outputTranslateResult(s0.translate(),s0.translatorInfo());
+                outputTranslateResult(s0.translate(),s0.transInfo());
 
                 break;
             case 1:
                 apiiDictTranslator s1=new apiiDictTranslator(toLookUpWord);
-                outputTranslateResult(s1.translate(),s1.translatorInfo());
+                outputTranslateResult(s1.translate(),s1.transInfo());
 
                 break;
             case 2:
                 youdaoXMLtranslator s2= new youdaoXMLtranslator(toLookUpWord);
-                outputTranslateResult(s2.translate(),s2.translatorInfo());
+                outputTranslateResult(s2.translate(),s2.transInfo());
 
                 break;
         }
