@@ -25,9 +25,10 @@ public class swingMain {
             }
         });
     }
+
     private static void createAndShowGUI()
     {
-//        JFrame.setDefaultLookAndFeelDecorated(true);
+
         frame=new JFrame("translator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(460,300);
@@ -41,6 +42,7 @@ public class swingMain {
 
         inputText = new JTextField();
         inputText.setBounds(120,20,165,25);
+        inputText.addKeyListener(new MyKeyListen());
         panel1.add(inputText);
 
         submitBtn =new JButton("translate");
@@ -70,11 +72,8 @@ public class swingMain {
 
         frame.setVisible(true);
     }
-}
 
-class MyMouseList extends MouseAdapter
-{
-    public void mouseClicked(MouseEvent e)
+    public static void goTranslate()
     {
         int transResource=swingMain.translateResource.getSelectedIndex();
         String toLookUpWord=swingMain.inputText.getText();
@@ -83,23 +82,42 @@ class MyMouseList extends MouseAdapter
             case 0:
                 malicTranslator s0=new malicTranslator(toLookUpWord);
                 outputTranslateResult(s0.translate(),s0.transInfo());
-
                 break;
             case 1:
                 apiiDictTranslator s1=new apiiDictTranslator(toLookUpWord);
                 outputTranslateResult(s1.translate(),s1.transInfo());
-
                 break;
             case 2:
                 youdaoXMLtranslator s2= new youdaoXMLtranslator(toLookUpWord);
                 outputTranslateResult(s2.translate(),s2.transInfo());
-
                 break;
         }
     }
+
     private static void outputTranslateResult(String res,String info)
     {
         swingMain.res.setText(res+"\n");
         swingMain.res.append(info);
     }
+}
+
+class MyKeyListen extends KeyAdapter
+{
+    public void keyPressed(KeyEvent e)
+    {
+        int currKey=e.getKeyCode();
+        if(currKey==10)
+        {
+            swingMain.goTranslate();
+        }
+    }
+}
+
+class MyMouseList extends MouseAdapter
+{
+    public void mouseClicked(MouseEvent e)
+    {
+        swingMain.goTranslate();
+    }
+
 }
