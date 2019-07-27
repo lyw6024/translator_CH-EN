@@ -6,9 +6,9 @@ Java learning:
 - abstract class
 - web scratch
 - GUI
+- key event and mouse event
 # Todo
-## add keyboard event
- press Enter to look up words
+
 ## add hujiang dict
  url is  "https://dict.hjenglish.com/w/" + tolookupword
  
